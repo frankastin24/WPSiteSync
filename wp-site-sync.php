@@ -16,7 +16,7 @@
 // -------------------------
 defined('ABSPATH') or exit;
 
-if (!defined('TSS_SECRET')) define('TSS_SECRET', 'q+UM3BdKw8W2TpgapcYEpQ2YKZSlZqdZiLkxt2yofHg=');
+if (!defined('TSS_SECRET')) define('TSS_SECRET', 'CHANGE_THIS_SECRET');
 
 if (!defined('TSS_TEMP_DIR')) define('TSS_TEMP_DIR', WP_CONTENT_DIR . '/tss-temp');
 if (!defined('TSS_BACKUP_DIR')) define('TSS_BACKUP_DIR', TSS_TEMP_DIR . '/backups');

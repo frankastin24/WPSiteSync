@@ -16,7 +16,7 @@ function tss_perform_pull($opts) {
         'body' => [
             'secret' => TSS_SECRET,
             'username' => $username,
-            'password' => md5($password),
+            'password' => $password,
             'incremental' => $incremental ? 1 : 0
         ]
     ]);

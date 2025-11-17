@@ -8,7 +8,7 @@ function tss_rest_export(WP_REST_Request $req) {
     if ($req->get_param('secret') !== TSS_SECRET) return ['ok'=>false,'error'=>'Secret mismatch'];
     $username = $req->get_param('username');
     $password = $req->get_param('password');
-    $user = wp_authenticate($username, md5($password)); // remember callers send md5(pass)
+    $user = wp_authenticate($username, $password); // remember callers send md5(pass)
     if (is_wp_error($user)) return ['ok'=>false,'error'=>'Invalid credentials'];
 
     $incremental = $req->get_param('incremental') ? 1 : 0;
