@@ -33,24 +33,22 @@ register_activation_hook(__FILE__, function() {
 // ADMIN UI
 // -------------------------
 
+include __DIR__ . '/admin.php';
+include __DIR__ . '/backup.php';
+include __DIR__ . '/db.php';
+include __DIR__ . '/export.php';
+include __DIR__ . '/file-helpers.php';
+include __DIR__ . '/import.php';
+include __DIR__ . '/pull.php';
+include __DIR__ . '/push.php';
 
 add_action('admin_menu', function() {
     add_menu_page('Two-Site Sync', 'Two-Site Sync', 'manage_options', 'two_site_sync', 'tss_admin_page');
 });
 
-include './admin.php';
-include './backup.php';
-include './db.php';
-include './export.php';
-include './file-helpers.php';
-include './import.php';
-include './pull.php';
-include './push.php';
-
 // -------------------------
 // EXPORT & IMPORT REST ENDPOINTS (for both sides)
 // -------------------------
-
 add_action('rest_api_init', function() {
     register_rest_route('tss/v1', '/export', [
         'methods' => 'POST',
