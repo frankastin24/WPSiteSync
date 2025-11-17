@@ -28,16 +28,41 @@ register_activation_hook(__FILE__, function() {
     }
 });
 
-require './admin.php';
-require './backup.php';
-require './db.php';
-require './export.php';
-require './file-helpers.php';
-require './import.php';
-require './pull.php';
-require './push.php';
-require './rest.php';
 
+// -------------------------
+// ADMIN UI
+// -------------------------
+
+
+add_action('admin_menu', function() {
+    add_menu_page('Two-Site Sync', 'Two-Site Sync', 'manage_options', 'two_site_sync', 'tss_admin_page');
+});
+
+include './admin.php';
+include './backup.php';
+include './db.php';
+include './export.php';
+include './file-helpers.php';
+include './import.php';
+include './pull.php';
+include './push.php';
+
+// -------------------------
+// EXPORT & IMPORT REST ENDPOINTS (for both sides)
+// -------------------------
+
+add_action('rest_api_init', function() {
+    register_rest_route('tss/v1', '/export', [
+        'methods' => 'POST',
+        'callback' => 'tss_rest_export',
+        'permission_callback' => '__return_true'
+    ]);
+    register_rest_route('tss/v1', '/import', [
+        'methods' => 'POST',
+        'callback' => 'tss_rest_import',
+        'permission_callback' => '__return_true'
+    ]);
+});
 
 
 
